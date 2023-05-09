@@ -1,25 +1,14 @@
-let colorID = "red";
-
+let colorID = 0;
+const colors = ["red" , "yellow" , "green"];
 let buttonLightChanger = document.getElementById("btnTrafficLight");
+let intervalID = setInterval(colorButton, 10000);
 
-intervalID = setInterval(colorButton, 10000);
+buttonLightChanger.onclick = colorButton;
 
 function colorButton() {
-  switch(colorID) {
-    case "red":
-      colorID = "yellow";
-      break;
-    case "yellow":
-      colorID = "green";
-      break;
-    case "green":
-      colorID = "red";
-      break;
-  }
-    buttonLightChanger.style.background = colorID;
-    buttonLightChanger.style.border = colorID;
+  colorID = colorID >= colors.length -1 ? 0 : ++colorID;
+  buttonLightChanger.style.background = colors[colorID];
+  buttonLightChanger.style.border = colors[colorID];
   clearInterval(intervalID);
   intervalID = setInterval(colorButton, 10000);
 }
-
-buttonLightChanger.onclick = colorButton;
